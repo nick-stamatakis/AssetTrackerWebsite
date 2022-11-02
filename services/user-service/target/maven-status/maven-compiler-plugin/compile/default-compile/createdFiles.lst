@@ -1,0 +1,5 @@
+com\dkadur\assettracker\userservice\repository\UserRepository.class
+com\dkadur\assettracker\userservice\entity\User.class
+com\dkadur\assettracker\userservice\service\UserService.class
+com\dkadur\assettracker\userservice\UserServiceApplication.class
+com\dkadur\assettracker\userservice\controller\UserController.class
