@@ -23,7 +23,6 @@ public class UserService {
     private UserRepository userRepository;
 
     private User authenticatedUser;
-    private String adminPassword = "assettracker";
 
     private String hashPassword(String password) {
         return Hashing.sha256()
@@ -72,10 +71,7 @@ public class UserService {
         return ResponseEntity.status(HttpStatus.OK).body("User successfully deleted");
     }
 
-    public List<User> getAllUsers(String adminPassword) {
-        if (!adminPassword.equals(this.adminPassword)) {
-            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Incorrect admin password");
-        }
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 }

@@ -41,8 +41,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/get-all/", produces = "application/json")
-    public List<User> getAllUsers(@RequestBody String adminPassword) {
-        return userService.getAllUsers(adminPassword);
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
 }
