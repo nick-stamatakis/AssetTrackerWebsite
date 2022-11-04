@@ -15,8 +15,6 @@ public class DeviceService {
     @Autowired
     private DeviceRepository deviceRepository;
 
-    private String adminPassword = "asset-tracker";
-
     public Device addDevice(Device device) {
         return deviceRepository.save(device);
     }
@@ -25,7 +23,7 @@ public class DeviceService {
         return deviceRepository.findByDeviceId(deviceId);
     }
 
-    public List<Device> getAllDevices() {
+    public Iterable<Device> getAllDevices() {
         return deviceRepository.findAll();
     }
 }

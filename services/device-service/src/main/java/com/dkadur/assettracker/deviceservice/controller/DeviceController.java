@@ -20,7 +20,7 @@ public class DeviceController {
     }
 
     @GetMapping("/get-all/")
-    public List<Device> getAllDevices() {
+    public Iterable<Device> getAllDevices() {
         return deviceService.getAllDevices();
     }
 }
