@@ -23,4 +23,9 @@ public class DeviceController {
     public Iterable<Device> getAllDevices() {
         return deviceService.getAllDevices();
     }
+
+    @GetMapping("/test-string/")
+    public String getTestString() {
+        return "test";
+    }
 }
