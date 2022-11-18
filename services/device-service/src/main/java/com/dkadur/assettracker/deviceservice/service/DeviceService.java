@@ -5,6 +5,7 @@ import com.dkadur.assettracker.deviceservice.repository.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,7 +23,7 @@ public class DeviceService {
         return new Device();
     }
 
-    public Iterable<Device> getAllDevices() {
+    public List<Device> getAllDevices() {
         return deviceRepository.findAll();
     }
 }
