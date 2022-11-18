@@ -5,7 +5,7 @@ import com.dkadur.assettracker.deviceservice.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/devices")
@@ -20,12 +20,12 @@ public class DeviceController {
     }
 
     @GetMapping("/get-all/")
-    public Iterable<Device> getAllDevices() {
+    public Optional<Device> getAllDevices() {
         return deviceService.getAllDevices();
     }
 
     @GetMapping("/test-string/")
     public String getTestString() {
-        return "test";
+        return "test2";
     }
 }

@@ -8,6 +8,4 @@ import java.util.List;
 
 @Repository
 public interface DeviceRepository extends SpannerRepository<Device, Long> {
-
-    Device findByDeviceId(Long deviceId);
 }

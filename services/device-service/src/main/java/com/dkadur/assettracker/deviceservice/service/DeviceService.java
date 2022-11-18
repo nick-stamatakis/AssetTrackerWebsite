@@ -3,11 +3,9 @@ package com.dkadur.assettracker.deviceservice.service;
 import com.dkadur.assettracker.deviceservice.entity.Device;
 import com.dkadur.assettracker.deviceservice.repository.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DeviceService {
@@ -20,10 +18,11 @@ public class DeviceService {
     }
 
     public Device findDeviceById(Long deviceId) {
-        return deviceRepository.findByDeviceId(deviceId);
+        //return deviceRepository.findByDeviceId(deviceId);
+        return new Device();
     }
 
-    public Iterable<Device> getAllDevices() {
-        return deviceRepository.findAll();
+    public Optional<Device> getAllDevices() {
+        return deviceRepository.findById(Long.valueOf(1));
     }
 }
