@@ -22,7 +22,7 @@ public class DeviceService {
         return new Device();
     }
 
-    public Optional<Device> getAllDevices() {
-        return deviceRepository.findById(Long.valueOf(1));
+    public Iterable<Device> getAllDevices() {
+        return deviceRepository.findAll();
     }
 }
