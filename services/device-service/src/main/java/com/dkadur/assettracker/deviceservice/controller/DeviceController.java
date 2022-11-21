@@ -26,6 +26,6 @@ public class DeviceController {
 
     @GetMapping("/test-string/")
     public String getTestString() {
-        return "test4";
+        return "test5";
     }
 }
