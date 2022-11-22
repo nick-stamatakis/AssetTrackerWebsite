@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -16,33 +17,43 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/add/", produces = "application/json")
+    @PostMapping("/add/")
     public User addUser (@RequestBody User user) {
         return userService.addUser(user);
     }
 
-    @PostMapping(value = "/update/username/", produces = "application/json")
+    @PostMapping("/update/username/")
     public User updateUsername(@RequestBody HashMap<String, User> newUsernameMap) {
         String newUsername = newUsernameMap.keySet().iterator().next();
         User user = newUsernameMap.get(newUsername);
         return userService.updateUsername(user, newUsername);
     }
 
-    @PostMapping(value = "/update/password/", produces = "application/json")
+    @PostMapping("/update/password/")
     public User updatePassword(@RequestBody HashMap<String, User> newPasswordMap) {
         String newPassword = newPasswordMap.keySet().iterator().next();
         User user = newPasswordMap.get(newPassword);
         return userService.updatePassword(user, newPassword);
     }
 
-    @DeleteMapping(value = "/delete/", produces = "application/json")
-    public ResponseEntity deleteUser(@RequestBody User user) {
-        return userService.deleteUser(user);
+    @GetMapping("/get/{userId}")
+    public Optional<User> getUserById(@PathVariable Long userId) {
+        return userService.getUserById(userId);
     }
 
-    @GetMapping(value = "/get-all/", produces = "application/json")
+    @GetMapping("/get/all/")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @GetMapping("/get/login-validity/")
+    public boolean isValidLogin(@RequestBody User user) {
+        return userService.isValidLogin(user);
+    }
+
+    @DeleteMapping("/delete/")
+    public ResponseEntity deleteUser(@RequestBody User user) {
+        return userService.deleteUser(user);
     }
 
 }

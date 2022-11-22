@@ -18,12 +18,16 @@ public class DeviceService {
         return deviceRepository.save(device);
     }
 
-    public Device findDeviceById(Long deviceId) {
-        //return deviceRepository.findByDeviceId(deviceId);
-        return new Device();
+    public Optional<Device> findDeviceById(Long deviceId) {
+        return deviceRepository.findById(deviceId);
     }
 
     public List<Device> getAllDevices() {
         return deviceRepository.findAll();
+    }
+
+    public String removeDeviceById(Long deviceId) {
+        deviceRepository.deleteById(deviceId);
+        return "Device successfully deleted";
     }
 }

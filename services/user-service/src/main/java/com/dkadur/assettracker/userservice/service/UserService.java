@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.persistence.PreRemove;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,8 +22,7 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-
-    private User authenticatedUser;
+    private User adminUser = userRepository.findById(Long.valueOf(1)).orElse(null);
 
     private String hashPassword(String password) {
         return Hashing.sha256()
@@ -34,6 +34,14 @@ public class UserService {
         String hashedPassword = hashPassword(user.getPassword());
         user.setPassword(hashedPassword);
         return userRepository.save(user);
+    }
+
+    public boolean authenticateAdminUser(User user) {
+        String username = user.getUsername();
+        String password = user.getPassword();
+        List<User> matchedUsers = userRepository.findByUsername(username);
+        String hashedInputPassword = hashPassword(password);
+        return adminUser.getPassword().equals(hashedInputPassword);
     }
 
     public User authenticateUser(User user) {
@@ -65,13 +73,21 @@ public class UserService {
         return userRepository.save(userToUpdate);
     }
 
-    public ResponseEntity deleteUser(User user) {
-        User userToDelete = authenticateUser(user);
-        userRepository.delete(userToDelete);
-        return ResponseEntity.status(HttpStatus.OK).body("User successfully deleted");
+    public Optional<User> getUserById(Long deviceId) {
+        return userRepository.findById(deviceId);
     }
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public boolean isValidLogin(User user) {
+        return authenticateUser(user) != null;
+    }
+
+    public ResponseEntity deleteUser(User user) {
+        User userToDelete = authenticateUser(user);
+        userRepository.delete(userToDelete);
+        return ResponseEntity.status(HttpStatus.OK).body("User successfully deleted");
     }
 }
