@@ -22,7 +22,7 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-    private User adminUser = userRepository.findById(Long.valueOf(1)).orElse(null);
+    //private User adminUser = userRepository.findById(Long.valueOf(1)).orElse(null);
 
     private String hashPassword(String password) {
         return Hashing.sha256()
@@ -36,13 +36,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public boolean authenticateAdminUser(User user) {
+    /*public boolean authenticateAdminUser(User user) {
         String username = user.getUsername();
         String password = user.getPassword();
         List<User> matchedUsers = userRepository.findByUsername(username);
         String hashedInputPassword = hashPassword(password);
         return adminUser.getPassword().equals(hashedInputPassword);
-    }
+    }*/
 
     public User authenticateUser(User user) {
         String username = user.getUsername();
