@@ -33,7 +33,7 @@ public class DeviceController {
 
     @GetMapping("/test-string/")
     public String getTestString() {
-        return "test5";
+        return "test6";
     }
 
     @DeleteMapping("/delete/{deviceId}")
