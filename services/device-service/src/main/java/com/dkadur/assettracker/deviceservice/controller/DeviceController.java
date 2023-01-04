@@ -47,7 +47,7 @@ public class DeviceController {
 
     @GetMapping("/test-string/")
     public String getTestString() {
-        return "test6";
+        return "test7";
     }
 
     @DeleteMapping("/delete/{deviceId}")
