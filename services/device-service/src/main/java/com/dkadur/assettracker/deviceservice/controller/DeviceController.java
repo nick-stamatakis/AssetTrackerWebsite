@@ -25,7 +25,7 @@ public class DeviceController {
         return deviceService.addDevice(device);
     }
 
-    @GetMapping("/get/{deviceId}")
+    @PostMapping("/get/device/{deviceId}")
     public Optional<Device> getDeviceById(@PathVariable Long deviceId) {
         return deviceService.findDeviceById(deviceId);
     }
