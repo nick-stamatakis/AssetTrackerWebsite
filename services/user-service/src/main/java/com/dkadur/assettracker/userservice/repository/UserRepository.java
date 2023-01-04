@@ -10,5 +10,6 @@ import java.util.List;
 public interface UserRepository extends SpannerRepository<User, Long> {
 
     List<User> findByUsername(String username);
+    List<User> findAll();
 
 }

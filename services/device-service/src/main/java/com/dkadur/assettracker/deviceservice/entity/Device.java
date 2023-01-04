@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Table(name="devices")
 @Data
 @AllArgsConstructor
@@ -13,9 +12,21 @@ import lombok.NoArgsConstructor;
 public class Device {
 
     @PrimaryKey(keyOrder = 1)
-    @Column(name="deviceId")
-    private Long deviceId;
+    @Column(name="uuid")
+    private String uuid;
 
-    @Column(name="deviceName")
-    private String deviceName;
+    @Column(name="name")
+    private String name;
+
+    @Column(name="model")
+    private String model;
+
+    @Column(name="location")
+    private String location;
+
+    @Column(name="status")
+    private String status;
+
+    @Column(name="type")
+    private String type;
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/users")
 public class UserController {
 
@@ -46,7 +47,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/get/login-validity/")
+    @PostMapping("/login-check/")
     public boolean isValidLogin(@RequestBody User user) {
         return userService.isValidLogin(user);
     }

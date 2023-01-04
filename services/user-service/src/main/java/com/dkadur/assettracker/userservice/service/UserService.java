@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.PreRemove;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
@@ -56,8 +55,9 @@ public class UserService {
             }
         }
 
-        throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED,
-                "Authentication failed: Invalid username and/or password");
+        /*throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED,
+                "Authentication failed: Invalid username and/or password");*/
+        return null;
     }
 
     public User updateUsername(User user, String newUsername) {
