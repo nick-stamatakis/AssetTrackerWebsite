@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import deviceEndpoint from "../rest-endpoints/devicesEndpoint";
 
-export default function PieChart() {
-  let navigate = useNavigate();
+const PieChart = () => {
+  const navigate = useNavigate();
   
-  var data = '';
-  var url = 'http://34.172.72.72:8082/api/devices/get/device-counts/';
+  const data = '';
+  const url = deviceEndpoint + '/devices/get/device-counts/';
 
-  var config = {
+  const config = {
     method: 'get',
     url: url,
     headers: { },
@@ -36,7 +37,7 @@ export default function PieChart() {
 
   useEffect(() => {
     getAllDeviceData();
-  }, []);
+  }, []); 
 
   const getAllDeviceData = () => {
     axios(config)
@@ -65,3 +66,5 @@ export default function PieChart() {
     </>
   );
 }
+
+export default PieChart;

@@ -3,15 +3,16 @@ import { useState } from 'react';
 import './Login.css';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import userEndpoint from "../rest-endpoints/usersEndpoint";
 
 //REST API Endpoint for user authentication
 //Use localhost for debugging and real IP for deployment
-const url = 'http://34.27.94.109:8081/api/users/login-check/';
+const url = userEndpoint + '/users/login-check/';
 
-export function Login() {
+const Login = () => {
   const [inputs, setInputs] = useState({});
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { Chart } from "react-google-charts";
-import { useNavigate } from "react-router-dom";
+import deviceEndpoint from "../rest-endpoints/devicesEndpoint";
 
-export function DeviceList() {
-    let navigate = useNavigate();
+const DeviceList = () => {
+    const data = '';
+    const url = deviceEndpoint + '/devices/get/device-list/';
 
-    var data = '';
-    var url = 'http://34.172.72.72:8082/api/devices/get/device-list/';
-
-    var config = {
+    const config = {
         method: 'get',
         url: url,
         headers: { },
@@ -30,7 +28,7 @@ export function DeviceList() {
 
     useEffect(() => {
         getAllDeviceData();
-    }, []);
+    });
 
     const getAllDeviceData = () => {
         axios(config)
@@ -48,7 +46,6 @@ export function DeviceList() {
 
     return (
     <>
-        <button onClick={() => navigate('/pie-chart')}>Back</button>
         <Chart
         chartType="Table"
         width="100%"
