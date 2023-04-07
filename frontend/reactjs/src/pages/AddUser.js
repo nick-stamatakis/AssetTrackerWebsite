@@ -49,55 +49,50 @@ const AddUser = () => {
     }
 
     return (
-        <>
-            <head>
-                <link href="AddUser.css" rel="stylesheet" />
-            </head>
-            <body>
-                <form onSubmit={handleSubmit}>
-                    <div class="container">
-                    <h1>Add User</h1>
-                    <br></br>
-                        <p>Please fill in this form to add an account.</p>
-                        <hr/>
+      <>
+          <head>
+              <link href="AddUser.css" rel="stylesheet" />
+          </head>
+          <body>
+              <div class="main-container">
+                  <form onSubmit={handleSubmit}>
+                      <div class="container">
+                          <h1>Add User</h1>
+                          <br></br>
+                          <p>Please fill in this form to add an account.</p>
+                          <hr/>
+                          <div class="input">
+                              <input 
+                                type="text" 
+                                name="username" 
+                                id="username" 
+                                required title="Please enter your Username here" 
+                                value={inputs.username || ""} 
+                                onChange={handleChange}
+                              />
+                              <label for="username">Username</label>
+                          </div>
 
-                        {/*<label for="username"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="username" id="username" value={inputs.username || ""} onChange={handleChange}/>
+                          <div class="input">
+                              <input
+                                type="password" 
+                                name="password" 
+                                id="password" 
+                                required title="Please enter your Password here" 
+                                value={inputs.password || ""} 
+                                onChange={handleChange}
+                              />
+                              <label for="password">Password</label>
+                          </div>
 
-                        <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" value={inputs.password || ""} onChange={handleChange}/>*/}
-
-                <div class="input">
-                <input 
-                  type="text" 
-                  name="username" 
-                  id="username" 
-                  required title="Please enter your Username here" 
-                  value={inputs.username || ""} 
-                  onChange={handleChange}
-                />
-                <label for="username">Username</label>
+                          <hr/>
+                          <button type="submit" class="registerbtn">Add Account</button>
+                      </div>
+                  </form>
               </div>
-
-              <div class="input">
-                <input
-                  type="password" 
-                  name="password" 
-                  id="password" 
-                  required title="Please enter your Password here" 
-                  value={inputs.password || ""} 
-                  onChange={handleChange}
-                />
-                <label for="password">Password</label>
-              </div>
-
-                        <hr/>
-                        <button type="submit" class="registerbtn">Add Account</button>
-                    </div>
-                </form>
-            </body>
-        </>
-    )
+          </body>
+      </>
+  )
 }
 
 export default AddUser;
