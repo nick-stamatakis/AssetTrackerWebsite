@@ -7,24 +7,30 @@ import DeviceList from './pages/DeviceList';
 import AddUser from './pages/AddUser';
 import WithNav from './WithNav';
 import WithoutNav from './WithoutNav';
+import UserProfileButton from './Components/UserProfileButton';
+import {ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <div className="App" style={{ marginTop: 5 }}>
-        <Routes>
-          <Route element={<WithoutNav />}>
-            <Route path="/" element={<Login />} />
-          </Route>
-          <Route element={<WithNav />}>
-            <Route path="/pie-chart" element={<PieChart />} />
-            <Route path="/device-list" element={<DeviceList />} />
-            <Route path="/add-user" element={<AddUser />} />
-          </Route>
-        </Routes>
-      </div>
-    </BrowserRouter>
-  )
-}
+    <ThemeProvider theme={createTheme()}>
+      <BrowserRouter>
+        <div className="App" style={{ marginTop: 5 }}>
+          <Routes>
+            <Route element={<WithoutNav />}>
+              <Route path="/" element={<Login />} />
+            </Route>
+            <Route element={<WithNav />}>
+              <Route path="/pie-chart" element={<PieChart />} />
+              <Route path="/device-list" element={<DeviceList />} />
+              <Route path="/add-user" element={<AddUser />} />
+              <Route path="/button" element={<UserProfileButton />} />
+            </Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
+};
 
 export default App;
