@@ -21,8 +21,17 @@ const DeviceList = () => {
     const options = {
         title: "Company Performance",
         curveType: "function",
+        allowHtml: true,
         legend: { position: "bottom" }
     };
+
+    const formatters = [
+        {
+          type: "PatternFormat",
+          column: [3, 4],
+          options: '<a href="https://www.google.com/maps/place/{0}">{0}</a>'
+        },
+    ];
 
     const [deviceData, getDeviceData] = useState('');
 
@@ -52,6 +61,7 @@ const DeviceList = () => {
         height="400px"
         data={deviceData}
         options={options}
+        formatters={formatters}
         />
     </>
     );

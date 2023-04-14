@@ -3,6 +3,7 @@ import { Chart } from "react-google-charts";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import deviceEndpoint from "../rest-endpoints/devicesEndpoint";
+import "./PieChart.css";
 
 const PieChart = () => {
   const navigate = useNavigate();
@@ -53,15 +54,17 @@ const PieChart = () => {
   
   return (
     <>
-      <div>
-        <Chart
-        chartType="PieChart"
-        data={deviceData}
-        options={pieOptions}
-        width={"100%"}
-        height={"400px"}
-        chartEvents={chartEvents}
-        />
+      <div className="pie-chart-container">
+        <div className="pie-chart-wrapper">
+          <Chart
+            chartType="PieChart"
+            data={deviceData}
+            options={pieOptions}
+            width={"100%"}
+            height={"400px"}
+            chartEvents={chartEvents}
+          />
+        </div>
       </div>
     </>
   );
