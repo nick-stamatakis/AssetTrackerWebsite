@@ -24,9 +24,15 @@ public class Device {
     @Column(name="location")
     private String location;
 
-    @Column(name="status")
-    private String status;
-
     @Column(name="type")
     private String type;
+
+    @Column(name="connectionStatus")
+    private String connectionStatus;
+
+    @Column(name="batteryStatus")
+    private String batteryStatus;
+
+    @Column(name="tenantId")
+    private int tenantId;
 }

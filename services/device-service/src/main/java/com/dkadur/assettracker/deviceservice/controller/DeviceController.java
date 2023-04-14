@@ -4,12 +4,14 @@ import com.dkadur.assettracker.deviceservice.entity.Device;
 import com.dkadur.assettracker.deviceservice.service.DeviceService;
 import com.dkadur.assettracker.deviceservice.template.DeviceList;
 import com.google.cloud.spring.data.spanner.core.mapping.Table;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -29,20 +31,19 @@ public class DeviceController {
     public Optional<Device> getDeviceById(@PathVariable Long deviceId) {
         return deviceService.findDeviceById(deviceId);
     }
-
     @GetMapping("/get/all/")
     public List<Device> getAllDevices() {
         return deviceService.getAllDevices();
     }
 
-    @GetMapping("/get/device-counts/")
-    public List<List<Object>> getDeviceCounts() {
-        return deviceService.getDeviceCounts();
+    @GetMapping("/get/device-counts/{tenantId}")
+    public List<List<Object>> getDeviceCounts(@PathVariable int tenantId) {
+        return deviceService.getDeviceCounts(tenantId);
     }
 
-    @GetMapping("/get/device-list/")
-    public List<Device> getDeviceList() {
-        return deviceService.getDeviceList();
+    @GetMapping("/get/device-list/{tenantId}")
+    public List<JsonObject> getDeviceList(@PathVariable int tenantId) {
+        return deviceService.getDeviceList(tenantId);
     }
 
     @GetMapping("/test-string/")
