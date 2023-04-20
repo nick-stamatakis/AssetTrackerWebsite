@@ -1,26 +1,31 @@
-import HomeIcon from '@mui/icons-material/Home';
-import TravelExploreIcon from '@mui/icons-material/TravelExplore';
-import BarChartIcon from '@mui/icons-material/BarChart';
+import DevicesIcon from '@mui/icons-material/Devices';
+import PieChartOutlineIcon from '@mui/icons-material/PieChartOutline';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { ListItemIcon } from '@mui/material';
 
 export const navData = [
     {
         id: 0,
-        icon: <BarChartIcon/>,
+        icon: <PieChartOutlineIcon/>,
         text: "Charts",
         link: "/pie-chart"
     },
     {
         id: 1,
-        icon: <TravelExploreIcon/>,
+        icon: <DevicesIcon/>,
         text: "Devices",
         link: "/device-list"
     },
     {
         id: 2,
-        icon: <TravelExploreIcon/>,
+        icon: <ManageAccountsIcon/>,
         text: "User Management",
         link: "/add-user"
+    },
+    {
+        id: 3,
+        icon: <SettingsIcon/>,
+        text: "Settings",
+        link: "/settings"
     }
 ]

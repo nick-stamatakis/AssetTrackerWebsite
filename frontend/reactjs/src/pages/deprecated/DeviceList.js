@@ -5,7 +5,7 @@ import deviceEndpoint from "../rest-endpoints/devicesEndpoint";
 
 const DeviceList = () => {
     const data = '';
-    const url = deviceEndpoint + '/devices/get/device-list/';
+    const url = deviceEndpoint + '/get/device-list/' + localStorage.getItem("token");
 
     const config = {
         method: 'get',
@@ -14,24 +14,13 @@ const DeviceList = () => {
         data : data
     };
     
-    const deviceListData = [
-        ["Name", "UUID", "Model", "Location", "Status", "Type"]
-    ];
+    let deviceListData = [];
     
     const options = {
         title: "Company Performance",
         curveType: "function",
-        allowHtml: true,
         legend: { position: "bottom" }
     };
-
-    const formatters = [
-        {
-          type: "PatternFormat",
-          column: [3, 4],
-          options: '<a href="https://www.google.com/maps/place/{0}">{0}</a>'
-        },
-    ];
 
     const [deviceData, getDeviceData] = useState('');
 
@@ -43,9 +32,9 @@ const DeviceList = () => {
         axios(config)
         .then((response) => {
             const deviceList = response.data;
+            deviceListData.push(Object.keys(deviceList[0]));
             for (var i = 0; i < deviceList.length; i++) {
                 const tempList = Object.values(deviceList[i]);
-                [tempList[0], tempList[1]] = [tempList[1], tempList[0]];
                 deviceListData.push(tempList);
             }
             getDeviceData(deviceListData);
@@ -61,7 +50,6 @@ const DeviceList = () => {
         height="400px"
         data={deviceData}
         options={options}
-        formatters={formatters}
         />
     </>
     );

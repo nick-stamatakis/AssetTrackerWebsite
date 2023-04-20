@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -32,6 +33,7 @@ public class UserService {
     public User addUser(User user) {
         String hashedPassword = hashPassword(user.getPassword());
         user.setPassword(hashedPassword);
+        user.setUserId(Math.abs(new Random().nextLong()));
         return userRepository.save(user);
     }
 
@@ -79,6 +81,10 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public int getTenantId(User user) {
+        return authenticateUser(user).getTenantId();
     }
 
     public boolean isValidLogin(User user) {

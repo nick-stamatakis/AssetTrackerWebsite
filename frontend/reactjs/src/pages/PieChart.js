@@ -3,20 +3,12 @@ import { Chart } from "react-google-charts";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import deviceEndpoint from "../rest-endpoints/devicesEndpoint";
-import "./PieChart.css";
+import './PieChart.css';
 
 const PieChart = () => {
   const navigate = useNavigate();
-  
-  const data = '';
-  const url = deviceEndpoint + '/devices/get/device-counts/';
 
-  const config = {
-    method: 'get',
-    url: url,
-    headers: { },
-    data : data
-  };
+  const data = '';
 
   const chartEvents = [
     {
@@ -28,30 +20,37 @@ const PieChart = () => {
     }
   ];
 
-  const pieData = [["Devices", "Count"]];
+  const [deviceData, setDeviceData] = useState([["Devices", "Count"]]);
+
+  useEffect(() => {
+    const url = deviceEndpoint + '/get/device-counts/' + localStorage.getItem("token");
+
+    const config = {
+      method: 'get',
+      url: url,
+      headers: {},
+      data: data
+    };
+
+    const getAllDeviceData = () => {
+      axios(config)
+        .then((response) => {
+          const deviceCounts = response.data;
+          const pieData = [["Devices", "Count"]];
+          for (const deviceCount of deviceCounts) {
+            pieData.push(deviceCount);
+          }
+          setDeviceData(pieData);
+        })
+        .catch(error => console.log(error));
+    }
+    getAllDeviceData();
+  }, []);
 
   const pieOptions = {
     title: "Devices",
   };
 
-  const [deviceData, getDeviceData] = useState('');
-
-  useEffect(() => {
-    getAllDeviceData();
-  }, []); 
-
-  const getAllDeviceData = () => {
-    axios(config)
-    .then((response) => {
-      const deviceCounts = response.data;
-      for (const deviceCount of deviceCounts) {
-        pieData.push(deviceCount);
-      }
-      getDeviceData(pieData);
-    })
-    .catch(error => console.log(error));
-  }
-  
   return (
     <>
       <div className="pie-chart-container">
