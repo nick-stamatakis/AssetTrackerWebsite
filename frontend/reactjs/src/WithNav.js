@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidenav from './Components/Sidenav';
-import { Outlet } from 'react-router';
+import ProtectedRoute from './Components/ProtectedRoute';
 import UserProfileButton from './Components/UserProfileButton';
 
 const WithNav = () => {
@@ -8,9 +8,11 @@ const WithNav = () => {
     <>
       <Sidenav />
       <UserProfileButton />
-      <Outlet />
+      <ProtectedRoute />
+      {/*<Outlet /> 
+      Uncomment this if ProtectedRoute is removed*/}
     </>
   );
 };
 
-export default WithNav;
+export default WithNav

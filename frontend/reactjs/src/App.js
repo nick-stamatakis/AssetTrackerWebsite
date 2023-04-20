@@ -3,12 +3,12 @@ import './App.css';
 import PieChart from "./pages/PieChart";
 import Login from './pages/Login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import DeviceList from './pages/DeviceList';
+import DeviceTable from './pages/DeviceTable';
 import AddUser from './pages/AddUser';
 import WithNav from './WithNav';
 import WithoutNav from './WithoutNav';
-import UserProfileButton from './Components/UserProfileButton';
-import {ThemeProvider } from "@mui/material";
+import Settings from './pages/Settings';
+import { ThemeProvider} from '@mui/material';
 import { createTheme } from "@mui/material/styles";
 
 const App = () => {
@@ -20,17 +20,17 @@ const App = () => {
             <Route element={<WithoutNav />}>
               <Route path="/" element={<Login />} />
             </Route>
-            <Route element={<WithNav />}>
+            <Route element={<><WithNav /></>}>
               <Route path="/pie-chart" element={<PieChart />} />
-              <Route path="/device-list" element={<DeviceList />} />
+              <Route path="/device-list" element={<DeviceTable />} />
               <Route path="/add-user" element={<AddUser />} />
-              <Route path="/button" element={<UserProfileButton />} />
+              <Route path="/settings" element={<Settings />} />
             </Route>
           </Routes>
         </div>
       </BrowserRouter>
     </ThemeProvider>
-  );
-};
+  )
+}
 
 export default App;
